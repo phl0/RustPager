@@ -11,7 +11,7 @@ impl DummyTransmitter {
 }
 
 impl Transmitter for DummyTransmitter {
-    fn send(&mut self, gen: &mut Iterator<Item = u32>) {
+    fn send(&mut self, gen: &mut dyn Iterator<Item = u32>) {
         for word in gen {
             info!("{:032b}", word);
         }

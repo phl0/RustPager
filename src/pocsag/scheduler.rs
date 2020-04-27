@@ -78,7 +78,7 @@ impl Scheduler {
 }
 
 impl SchedulerCore {
-    pub fn run(&mut self, mut transmitter: Box<Transmitter>) {
+    pub fn run(&mut self, mut transmitter: Box<dyn Transmitter>) {
         info!("Scheduler started.");
         while !self.stop {
             let mut message = self.queue.pop_front();
@@ -155,7 +155,7 @@ impl SchedulerCore {
         }
     }
 
-    pub fn test(&mut self, mut transmitter: Box<Transmitter>) {
+    pub fn test(&mut self, mut transmitter: Box<dyn Transmitter>) {
         status!(transmitting: true);
         transmitter.send(&mut TestGenerator::new(1125));
         status!(transmitting: false);

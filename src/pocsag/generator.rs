@@ -21,7 +21,7 @@ pub struct Generator<'a> {
     // Current state of the state machine
     state: State,
     // Message source
-    messages: &'a mut (MessageProvider + 'a),
+    messages: &'a mut (dyn MessageProvider + 'a),
     // Current message being sent
     message: Option<Message>,
     // Number of codewords left in current batch
@@ -32,7 +32,7 @@ pub struct Generator<'a> {
 
 impl<'a> Generator<'a> {
     /// Create a new Generator
-    pub fn new(messages: &'a mut MessageProvider, first_msg: Message)
+    pub fn new(messages: &'a mut dyn MessageProvider, first_msg: Message)
         -> Generator<'a> {
         Generator {
             state: State::Preamble,

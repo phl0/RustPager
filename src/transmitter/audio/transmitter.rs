@@ -47,7 +47,7 @@ impl AudioTransmitter {
 }
 
 impl Transmitter for AudioTransmitter {
-    fn send(&mut self, gen: &mut Iterator<Item = u32>) {
+    fn send(&mut self, gen: &mut dyn Iterator<Item = u32>) {
         self.ptt.set(true);
 
         sleep(Duration::from_millis(self.tx_delay as u64));
